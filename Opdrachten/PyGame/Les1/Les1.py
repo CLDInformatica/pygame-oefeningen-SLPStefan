@@ -37,6 +37,9 @@ surface6.fill("green")
 surface7 = pygame.Surface((45, 70))
 surface7.fill("green")
 
+surface8 = pygame.Surface((30, 30))
+surface8.fill("yellow")
+
 
 
 while running:
@@ -52,6 +55,7 @@ while running:
   screen.blit(surface5, (200, 330))
   screen.blit(surface6, (400, 170))
   screen.blit(surface7, (600, 330))
+  screen.blit(surface8, (80, 200))
 
   
   pygame.display.update()
