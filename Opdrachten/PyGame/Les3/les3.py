@@ -13,16 +13,29 @@ import pygame
 
 pygame.init()
 
-screen = pygame.display.set_mode((800, 400))
+screen = pygame.display.set_mode((612, 408))
 pygame.display.set_caption('Auto rijden!')
 clock = pygame.time.Clock()
 running = True
 
+road = pygame.image.load("Opdrachten/PyGame/Les3/graphics/weg.jpg")
+
 background_surface = pygame.Surface((800, 400))
 background_surface.fill("white")
 
-auto_surface = pygame.image.load("Opdrachten/PyGame/Les3/graphics/auto.png").convert_alpha()
-auto_x_pos = 200
+regen_surface = pygame.image.load("Opdrachten/PyGame/Les3/graphics/regen.png")
+
+regen_y_pos = -300
+
+reger_surface = pygame.image.load("Opdrachten/PyGame/Les3/graphics/regen.png")
+
+reger_y_pos = 0
+
+auto_surface = pygame.image.load("Opdrachten/PyGame/Les3/graphics/autoecht.png").convert_alpha()
+DEFAULT_IMAGE_SIZE = (auto_surface.get_width() // 4, auto_surface.get_height() // 4)
+autoecht_surface = pygame.transform.scale(auto_surface, DEFAULT_IMAGE_SIZE)
+
+autoecht_x_pos = 200
 
 while running:
 
@@ -30,10 +43,21 @@ while running:
      if event.type == pygame.QUIT:
       running = False
 
-    screen.blit(background_surface, (0, 0))
+    
+    screen.blit(road, (0, 0))
 
-    auto_x_pos += 1
-    screen.blit(auto_surface, (auto_x_pos, 200))
+    autoecht_x_pos += 4
+    regen_y_pos += 3
+    reger_y_pos += 3
+    screen.blit(autoecht_surface, (autoecht_x_pos, 200))
+    screen.blit(regen_surface, (0, regen_y_pos))
+    screen.blit(reger_surface, (0, reger_y_pos))
+    if regen_y_pos >= 408:
+      regen_y_pos -= 800
+    if reger_y_pos >= 408:
+      reger_y_pos -= 800
+    if autoecht_x_pos >= 600:
+      autoecht_x_pos -= 700
 
     pygame.display.update()
     clock.tick(60)
